@@ -696,7 +696,7 @@ class CanalWebHandler(BaseHTTPRequestHandler):
                 <ol>
                     <li>确保水上书应用正在运行</li>
                     <li>按空格键或点击按钮开始录制环境声音</li>
-                    <li>等待AI分析并生成水墨艺术作品</li>
+                    <li>等待声音分析并生成水墨艺术作品</li>
                     <li>作品完成后将自动显示在此页面</li>
                 </ol>
             </div>
