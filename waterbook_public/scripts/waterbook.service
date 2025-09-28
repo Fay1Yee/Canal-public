@@ -1,0 +1,115 @@
+[Unit]
+Description=Waterbook Public - Sound to Calligraphy Art Generator
+Documentation=https://github.com/waterbook/waterbook-public
+After=network.target sound.target graphical-session.target
+Wants=network.target
+Requires=sound.target
+
+[Service]
+# Service type
+Type=simple
+Restart=always
+RestartSec=10
+
+# User and group (modify according to actual situation)
+User=pi
+Group=pi
+
+# Working directory (modify according to actual installation path)
+WorkingDirectory=/home/pi/waterbook_public
+
+# Execute command
+ExecStart=/usr/bin/python3 /home/pi/waterbook_public/app.py
+ExecStop=/bin/kill -TERM $MAINPID
+
+# Environment variables
+Environment=PYTHONPATH=/home/pi/waterbook_public
+Environment=DISPLAY=:0
+Environment=PULSE_RUNTIME_PATH=/run/user/1000/pulse
+Environment=XDG_RUNTIME_DIR=/run/user/1000
+
+# Standard output and error output
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=waterbook
+
+# Process management
+KillMode=mixed
+KillSignal=SIGTERM
+TimeoutStopSec=30
+
+# Resource limits
+LimitNOFILE=65536
+LimitNPROC=4096
+
+# Security settings
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/home/pi/waterbook_public/www
+ReadWritePaths=/home/pi/waterbook_public/assets
+ReadWritePaths=/tmp
+ReadWritePaths=/var/tmp
+
+# Network and device access
+PrivateNetwork=false
+DeviceAllow=/dev/snd rw
+DeviceAllow=/dev/gpiomem rw
+DeviceAllow=/dev/mem r
+
+# Capability settings (may be needed for GPIO access)
+# CapabilityBoundingSet=CAP_SYS_RAWIO
+# AmbientCapabilities=CAP_SYS_RAWIO
+
+[Install]
+WantedBy=multi-user.target
+Also=waterbook-setup.service
+
+# Service installation and usage instructions:
+#
+# 1. Copy service file to system directory:
+#    sudo cp scripts/waterbook.service /etc/systemd/system/
+#
+# 2. Modify paths and user in service file:
+#    sudo nano /etc/systemd/system/waterbook.service
+#    - Change User and Group to actual user
+#    - Change WorkingDirectory and ExecStart to actual paths
+#
+# 3. Reload systemd configuration:
+#    sudo systemctl daemon-reload
+#
+# 4. Enable service (auto-start on boot):
+#    sudo systemctl enable waterbook.service
+#
+# 5. Start service:
+#    sudo systemctl start waterbook.service
+#
+# 6. Check service status:
+#    sudo systemctl status waterbook.service
+#
+# 7. View service logs:
+#    sudo journalctl -u waterbook.service -f
+#
+# 8. Stop service:
+#    sudo systemctl stop waterbook.service
+#
+# 9. Disable service (cancel auto-start on boot):
+#    sudo systemctl disable waterbook.service
+#
+# 10. Restart service:
+#     sudo systemctl restart waterbook.service
+#
+# Notes:
+# - Ensure Python3 and all dependencies are installed
+# - Ensure user has access to GPIO and audio devices
+# - If using GPIO, may need to add user to gpio group: sudo usermod -a -G gpio pi
+# - If using audio, may need to add user to audio group: sudo usermod -a -G audio pi
+# - Ensure display environment variables are correctly set (DISPLAY, XDG_RUNTIME_DIR, etc.)
+# - On Raspberry Pi, may need to enable GPU memory split: sudo raspi-config -> Advanced Options -> Memory Split -> 64
+#
+# Troubleshooting:
+# - If service fails to start, check logs: sudo journalctl -u waterbook.service --no-pager
+# - If GPIO access is denied, check user permissions and device file permissions
+# - If audio doesn't work, check ALSA/PulseAudio configuration
+# - If display doesn't work, check X11/Wayland configuration and permissions

@@ -1,0 +1,52 @@
+# Waterbook Public Configuration File
+# 水墨风格声音艺术生成系统配置
+
+# Audio Configuration - 音频配置
+audio:
+  samplerate: 32000          # 采样率
+  channels: 1                # 声道数
+  record_seconds: 35         # 录制时长（秒）
+  frame_ms: 20              # 帧长度（毫秒）
+  band_splits_hz: [300, 2000]  # 频带分割点（Hz）
+
+# GPIO Configuration - GPIO配置
+gpio:
+  button_pin: 17            # GPIO按钮引脚
+  long_press_sec: 1.2       # 长按时间阈值（秒）
+
+# UI Configuration - 界面配置
+ui:
+  width: 1280               # 界面宽度
+  height: 720               # 界面高度
+  font: "墨趣古风体.ttf"    # 字体文件
+
+# Web Server Configuration - Web服务配置
+server:
+  port: 8000                # Web服务端口
+
+# State Timing Configuration - 状态时间配置
+states:
+  E1_seconds: 8             # E1引导状态持续时间
+  E3_seconds: 10            # E3生成状态暂停时间（延长以便用户欣赏生成过程）
+  E4_seconds: 20            # E4选择状态持续时间（延长以便用户查看）
+  E5_seconds: 30            # E5展示状态持续时间（延长以便扫描二维码）
+  E6_seconds: 5             # E6重置状态持续时间
+
+# Generation Configuration - 生成配置
+generation:
+  video_resolution: [960, 540]  # 视频分辨率
+  video_duration: 7         # 视频时长（秒）
+  video_fps: 24             # 视频帧率
+
+# Ink Wash Style Configuration - 水墨风格配置
+ink_wash:
+  default_thickness: 0.8    # 默认笔触粗细
+  default_blur: 0.6         # 默认墨迹模糊度
+  default_flywhite: 0.5     # 默认飞白程度
+  paper_texture: true       # 启用宣纸纹理
+  real_time_rendering: true # 启用实时渲染
+
+# Queue Mode Configuration - 队列模式配置
+queue_mode:
+  enabled: false            # 启用队列模式
+  reduction_factor: 0.7     # 时间缩减因子

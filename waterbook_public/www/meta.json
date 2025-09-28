@@ -1,0 +1,20 @@
+{
+  "title": "水上书 - 运河水墨",
+  "style": "行书",
+  "creation_time": "2025-09-25T22:11:24.705254",
+  "audio_features": {
+    "duration": 35.0,
+    "water_flow_attributes": 0.75,
+    "boat_activity": 0.3,
+    "bird_sounds": 0.4,
+    "wind_intensity": 0.2,
+    "ambient_score": 0.6
+  },
+  "art_parameters": {
+    "brush_thickness": 2.5,
+    "ink_density": 0.8,
+    "flywhite_intensity": 0.3,
+    "tranquility": 0.7,
+    "elegance": 0.8
+  }
+}

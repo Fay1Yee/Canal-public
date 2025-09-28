@@ -1,0 +1,135 @@
+# 运河水墨 Canal Ink Wash - Python依赖包
+# 运河环境声音艺术生成系统所需的Python库
+
+# 核心音频处理
+sounddevice>=0.4.6          # 音频录制和播放
+librosa>=0.10.1             # 音频分析和特征提取
+numpy>=1.24.0               # 数值计算基础库
+scipy>=1.11.0               # 科学计算库
+
+# 图像和视频处理
+Pillow>=10.0.0              # 图像处理库
+moviepy>=1.0.3              # 视频处理库
+
+# 游戏和图形界面
+pygame>=2.5.0               # 游戏开发和图形界面库
+
+# GPU加速渲染（可选）
+moderngl>=5.8.0             # ModernGL OpenGL绑定，用于GPU加速渲染
+moderngl-window>=2.4.0      # ModernGL窗口管理（可选）
+
+# 机器学习和音频分类（可选）
+tensorflow>=2.13.0          # TensorFlow机器学习框架（用于YAMNet音频分类）
+tensorflow-hub>=0.14.0      # TensorFlow Hub模型库（YAMNet预训练模型）
+panns-inference>=0.1.0      # PANNs音频分类推理库（推荐，更准确）
+
+# 机器学习和数据分析
+scikit-learn>=1.3.0         # 机器学习库（用于音频特征分析）
+
+# 配置文件处理
+PyYAML>=6.0                 # YAML配置文件解析
+
+# Web服务和二维码
+qrcode>=7.4.2               # 二维码生成
+qrcode[pil]>=7.4.2          # 二维码图像支持
+
+# 树莓派GPIO支持（可选）
+# RPi.GPIO>=0.7.1           # 树莓派GPIO控制（仅在树莓派上需要）
+
+# 系统和工具库
+pathlib2>=2.3.7            # 路径处理（Python 3.4+兼容）
+threading2>=0.1.2           # 线程处理增强
+dataclasses>=0.8            # 数据类支持（Python 3.6兼容）
+
+# 数学和统计
+matplotlib>=3.7.0           # 绘图库（可选，用于调试）
+seaborn>=0.12.0             # 统计绘图（可选，用于分析）
+
+# 开发和调试工具（可选）
+# pytest>=7.4.0            # 单元测试框架
+# black>=23.0.0             # 代码格式化工具
+# flake8>=6.0.0             # 代码检查工具
+
+# 性能优化（可选）
+numba>=0.57.0               # JIT编译器，加速数值计算
+cython>=3.0.0               # C扩展支持
+
+# 音频编解码支持
+# ffmpeg-python>=0.2.0      # FFmpeg Python绑定（需要系统安装FFmpeg）
+
+# 字体支持
+fonttools>=4.40.0           # 字体处理工具
+
+# 网络和通信
+requests>=2.31.0            # HTTP请求库
+urllib3>=2.0.0              # URL处理库
+
+# 日期时间处理
+python-dateutil>=2.8.2     # 日期时间工具
+
+# JSON和数据序列化
+ujson>=5.8.0                # 快速JSON处理（可选）
+
+# 系统信息
+psutil>=5.9.0               # 系统和进程信息
+
+# 加密和安全（可选）
+cryptography>=41.0.0        # 加密库
+
+# 并发处理
+concurrent-futures>=3.1.1   # 并发执行框架
+
+# 内存优化
+memory-profiler>=0.61.0     # 内存使用分析（开发用）
+
+# 配置管理
+python-dotenv>=1.0.0        # 环境变量管理
+
+# 日志处理
+colorlog>=6.7.0             # 彩色日志输出
+
+# 文件监控
+watchdog>=3.0.0             # 文件系统监控
+
+# 压缩和归档
+zipfile36>=0.1.3            # ZIP文件处理增强
+
+# 系统集成
+pyinstaller>=5.13.0         # 打包为可执行文件（可选）
+
+# 特定平台支持
+# 以下依赖根据运行平台选择安装
+
+# macOS特定
+# pyobjc>=9.2                # macOS系统集成（仅macOS）
+
+# Linux特定  
+# python3-dev                # Python开发头文件（Ubuntu/Debian）
+# libasound2-dev             # ALSA音频开发库（Ubuntu/Debian）
+# portaudio19-dev            # PortAudio开发库（Ubuntu/Debian）
+
+# Windows特定
+# pywin32>=306               # Windows API支持（仅Windows）
+# winsound                   # Windows音频支持（内置）
+
+# 注意事项：
+# 1. 某些依赖可能需要系统级安装（如FFmpeg、PortAudio等）
+# 2. 树莓派用户需要额外安装RPi.GPIO
+# 3. 建议使用虚拟环境安装依赖
+# 4. 部分可选依赖可根据实际需求选择安装
+# 5. ModernGL需要OpenGL 3.3+支持，用于GPU加速渲染
+
+# 安装命令示例：
+# pip install -r requirements.txt
+# 
+# 或使用国内镜像加速：
+# pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
+#
+# 树莓派用户额外安装：
+# pip install RPi.GPIO
+#
+# GPU加速渲染（推荐）：
+# pip install moderngl moderngl-window
+#
+# 开发环境额外安装：
+# pip install pytest black flake8 matplotlib seaborn memory-profiler

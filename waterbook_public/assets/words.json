@@ -1,0 +1,153 @@
+{
+  "low_freq_dominant": [
+    {"word": "boom", "pinyin": "boom", "meaning": "deep rumbling sound", "frequency_range": "20-300Hz"},
+    {"word": "hum", "pinyin": "hum", "meaning": "low frequency humming", "frequency_range": "50-200Hz"},
+    {"word": "thud", "pinyin": "thud", "meaning": "deep impact sound", "frequency_range": "40-250Hz"},
+    {"word": "rumble", "pinyin": "rumble", "meaning": "thunder-like sound", "frequency_range": "30-200Hz"},
+    {"word": "whoosh", "pinyin": "whoosh", "meaning": "deep wind sound", "frequency_range": "60-300Hz"},
+    {"word": "thump", "pinyin": "thump", "meaning": "muffled impact", "frequency_range": "50-280Hz"},
+    {"word": "gurgle", "pinyin": "gurgle", "meaning": "deep gurgling sound", "frequency_range": "80-250Hz"},
+    {"word": "mmm", "pinyin": "mmm", "meaning": "deep nasal sound", "frequency_range": "100-300Hz"},
+    {"word": "hmm", "pinyin": "hmm", "meaning": "deep humming", "frequency_range": "120-280Hz"},
+    {"word": "drone", "pinyin": "drone", "meaning": "low frequency droning", "frequency_range": "90-250Hz"}
+  ],
+  "mid_freq_dominant": [
+    {"word": "splash", "pinyin": "splash", "meaning": "water sound", "frequency_range": "300-2000Hz"},
+    {"word": "whoosh", "pinyin": "whoosh", "meaning": "wind sound", "frequency_range": "400-1800Hz"},
+    {"word": "hiss", "pinyin": "hiss", "meaning": "airflow sound", "frequency_range": "500-2000Hz"},
+    {"word": "rustle", "pinyin": "rustle", "meaning": "rustling sound", "frequency_range": "600-1500Hz"},
+    {"word": "swish", "pinyin": "swish", "meaning": "brushing sound", "frequency_range": "700-1800Hz"},
+    {"word": "scrape", "pinyin": "scrape", "meaning": "friction sound", "frequency_range": "800-2000Hz"},
+    {"word": "zoom", "pinyin": "zoom", "meaning": "fast movement sound", "frequency_range": "500-1600Hz"},
+    {"word": "whistle", "pinyin": "whistle", "meaning": "subtle hissing", "frequency_range": "600-1700Hz"},
+    {"word": "wail", "pinyin": "wail", "meaning": "wailing sound", "frequency_range": "400-1200Hz"},
+    {"word": "howl", "pinyin": "howl", "meaning": "howling sound", "frequency_range": "300-1500Hz"},
+    {"word": "ah", "pinyin": "ah", "meaning": "exclamation", "frequency_range": "350-1400Hz"},
+    {"word": "sigh", "pinyin": "sigh", "meaning": "sighing sound", "frequency_range": "400-1300Hz"}
+  ],
+  "high_freq_dominant": [
+    {"word": "ding", "pinyin": "ding", "meaning": "crisp metallic sound", "frequency_range": "2000-8000Hz"},
+    {"word": "ring", "pinyin": "ring", "meaning": "ringing sound", "frequency_range": "2500-6000Hz"},
+    {"word": "chirp", "pinyin": "chirp", "meaning": "sharp bird call", "frequency_range": "3000-8000Hz"},
+    {"word": "squeak", "pinyin": "squeak", "meaning": "sharp friction sound", "frequency_range": "2000-7000Hz"},
+    {"word": "beep", "pinyin": "beep", "meaning": "short high tone", "frequency_range": "2500-5000Hz"},
+    {"word": "eh", "pinyin": "eh", "meaning": "questioning high tone", "frequency_range": "2000-6000Hz"},
+    {"word": "giggle", "pinyin": "giggle", "meaning": "light laughter", "frequency_range": "2200-5500Hz"},
+    {"word": "eek", "pinyin": "eek", "meaning": "subtle sound", "frequency_range": "2800-6500Hz"},
+    {"word": "tweet", "pinyin": "tweet", "meaning": "bird call", "frequency_range": "3000-7500Hz"},
+    {"word": "tee-hee", "pinyin": "tee-hee", "meaning": "coquettish sound", "frequency_range": "2400-5800Hz"},
+    {"word": "huh", "pinyin": "huh", "meaning": "surprised sound", "frequency_range": "2100-5200Hz"},
+    {"word": "tsk", "pinyin": "tsk", "meaning": "contemptuous sound", "frequency_range": "2600-6200Hz"}
+  ],
+  "onset_dense": [
+    {"word": "crackle", "pinyin": "crackle", "meaning": "continuous crackling", "pattern": "rapid succession"},
+    {"word": "tick-tock", "pinyin": "tick-tock", "meaning": "regular beat", "pattern": "steady rhythm"},
+    {"word": "snap", "pinyin": "snap", "meaning": "breaking sound", "pattern": "sudden break"},
+    {"word": "tap-tap", "pinyin": "tap-tap", "meaning": "continuous tapping", "pattern": "rapid tapping"},
+    {"word": "thump-thump", "pinyin": "thump-thump", "meaning": "continuous heavy hits", "pattern": "repeated heavy hits"},
+    {"word": "ding-ding", "pinyin": "ding-ding", "meaning": "continuous crisp sounds", "pattern": "continuous ringing"},
+    {"word": "bang-bang", "pinyin": "bang-bang", "meaning": "continuous muffled sounds", "pattern": "repeated muffled hits"},
+    {"word": "clap-clap", "pinyin": "clap-clap", "meaning": "continuous clapping", "pattern": "rapid clapping"},
+    {"word": "click-click", "pinyin": "click-click", "meaning": "continuous light sounds", "pattern": "light rapid hits"},
+    {"word": "tap-tap", "pinyin": "tap-tap", "meaning": "continuous light tapping", "pattern": "light rapid tapping"},
+    {"word": "click-clack", "pinyin": "click-clack", "meaning": "continuous clicking sounds", "pattern": "mechanical clicking"},
+    {"word": "rattle", "pinyin": "rattle", "meaning": "continuous rattling sounds", "pattern": "rough continuous sound"}
+  ],
+  "sustained": [
+    {"word": "mmm", "pinyin": "mmm", "meaning": "sustained nasal sound", "duration": "long tone"},
+    {"word": "ahh", "pinyin": "ahh", "meaning": "extended exclamation", "duration": "extended tone"},
+    {"word": "ooo", "pinyin": "ooo", "meaning": "low sustained tone", "duration": "sustained tone"},
+    {"word": "shh", "pinyin": "shh", "meaning": "quiet shushing", "duration": "soft long tone"},
+    {"word": "ohh", "pinyin": "ohh", "meaning": "realization sound", "duration": "slow long tone"},
+    {"word": "umm", "pinyin": "umm", "meaning": "thinking sound", "duration": "contemplative long tone"},
+    {"word": "buzz", "pinyin": "buzz", "meaning": "sustained buzzing", "duration": "continuous tone"},
+    {"word": "hiss", "pinyin": "hiss", "meaning": "sustained hissing", "duration": "long hissing tone"},
+    {"word": "whooo", "pinyin": "whooo", "meaning": "sustained breathing sound", "duration": "long breathing tone"},
+    {"word": "sss", "pinyin": "sss", "meaning": "sustained hissing", "duration": "continuous tone"},
+    {"word": "hmm", "pinyin": "hmm", "meaning": "sustained humming", "duration": "melodious long tone"},
+    {"word": "ahhh", "pinyin": "ahhh", "meaning": "sustained calling", "duration": "drawn-out tone"}
+  ],
+  "emotional_mapping": {
+    "joy": ["haha", "hehe", "giggle", "chuckle"],
+    "surprise": ["wow", "eh", "oh", "whoa"],
+    "calm": ["mmm", "ohh", "umm", "shh"],
+    "intense": ["ahh", "roar", "boom", "bang"],
+    "gentle": ["hmm", "aww", "oh", "hey"],
+    "mysterious": ["shh", "hiss", "ooo", "buzz"]
+  },
+  "calligraphy_style_mapping": {
+    "cursive": {
+      "preferred_words": ["splash", "whoosh", "zoom", "swish", "flow"],
+      "characteristics": "fluid and continuous, suitable for expressing flow"
+    },
+    "seal": {
+      "preferred_words": ["thud", "thump", "boom", "rumble", "solid"],
+      "characteristics": "heavy and stable, suitable for expressing power"
+    },
+    "ink_wash": {
+      "preferred_words": ["shh", "ooo", "buzz", "hiss", "seep"],
+      "characteristics": "hazy and gradual, suitable for expressing mood"
+    }
+  },
+  "frequency_bands": {
+    "low": {
+      "range": "20-300Hz",
+      "description": "Low frequency band, mainly contains fundamental tones and deep sounds",
+      "calligraphy_effect": "thick strokes, rich ink color"
+    },
+    "mid": {
+      "range": "300-2000Hz",
+      "description": "Mid frequency band, main frequency range for vocals and most instruments",
+      "calligraphy_effect": "moderate strokes, rich variations"
+    },
+    "high": {
+      "range": "2000Hz and above",
+      "description": "High frequency band, contains brightness and details of sound",
+      "calligraphy_effect": "light strokes, flying white effect"
+    }
+  },
+  "onset_patterns": {
+    "sparse": {
+      "density_range": "0.0-0.3",
+      "description": "Sparse note onsets, slow sound changes",
+      "calligraphy_effect": "continuous strokes, few pauses"
+    },
+    "moderate": {
+      "density_range": "0.3-0.7",
+      "description": "Moderate note onset density",
+      "calligraphy_effect": "moderate pauses, strong rhythm"
+    },
+    "dense": {
+      "density_range": "0.7-1.0",
+      "description": "Dense note onsets, frequent sound changes",
+      "calligraphy_effect": "many pauses, strong jumping feel"
+    }
+  },
+  "cultural_context": {
+    "traditional_sounds": {
+      "nature": ["babble", "gurgle", "rustle", "whistle", "sigh"],
+      "instruments": ["ring", "clang", "thud", "knock", "chime"],
+      "daily_life": ["gurgle", "hum", "hmm", "mmm", "umm"]
+    },
+    "modern_sounds": {
+      "electronic": ["beep", "buzz", "bleep", "ping", "click"],
+      "mechanical": ["boom", "buzz", "click", "bang", "tap"],
+      "digital": ["ding", "dong", "beep", "ping", "bleep"]
+    }
+  },
+  "generation_rules": {
+    "primary_selection": "Select main onomatopoeia based on dominant frequency band",
+    "secondary_selection": "Select auxiliary onomatopoeia based on onset density",
+    "style_adaptation": "Adjust word selection based on calligraphy style",
+    "emotional_enhancement": "Enhance expression based on audio emotional characteristics",
+    "cultural_consideration": "Consider traditional cultural background for word filtering"
+  },
+  "metadata": {
+    "version": "1.0",
+    "created_by": "Waterbook Public",
+    "description": "Sound feature to onomatopoeia mapping dictionary for calligraphy art generation",
+    "total_words": 60,
+    "categories": 5,
+    "last_updated": "2024-01-20"
+  }
+}
