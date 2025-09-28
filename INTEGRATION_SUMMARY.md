@@ -5,7 +5,8 @@
 ### 1. 声音分类功能 (Enhanced Sound Classification)
 - **文件**: `enhanced_sound_classifier.py`
 - **集成位置**: `app.py` E2_RECORD 状态
-- **功能**: 智能识别运河环境中的不同声音类型（水流、鸟鸣、船只、风声等）
+- **功能**: 基于传统音频特征分析识别运河环境中的不同声音类型（水流、鸟鸣、船只、安静状态等）
+- **技术实现**: 使用librosa库提取音频特征（RMS能量、过零率、频带能量分布），通过规则判断进行分类
 - **集成方式**: 在音频录制完成后自动进行声音分类，结果存储在 `audio_features.sound_classification`
 
 ### 2. 音素可视化功能 (Phoneme Visualization)
