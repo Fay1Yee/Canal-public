@@ -51,9 +51,15 @@ temp_*.png
 temp_*.jpg
 temp_*.mp4
 
-# Output files (optional - you may want to keep these)
-# output/
-# www/
+# Output files - generated content should not be tracked
+output/
+www/cover.png
+www/loop.mp4
+www/meta.json
+www/temp_frame.png
+
+# Audio test files
+*.wav
 
 # Configuration (if contains sensitive data)
 # config.yaml

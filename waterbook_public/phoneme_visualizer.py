@@ -276,12 +276,14 @@ class PhonemeVisualizer:
             "assets/fonts/墨趣古风体.ttf"
         ]
         
+        self.font = None  # 添加缺失的font属性
         self.font_large = None
         self.font_medium = None
         self.font_small = None
         
         for font_path in font_paths:
             try:
+                self.font = pygame.font.Font(font_path, 36)  # 初始化font属性
                 self.font_large = pygame.font.Font(font_path, 36)
                 self.font_medium = pygame.font.Font(font_path, 24)
                 self.font_small = pygame.font.Font(font_path, 18)
@@ -293,6 +295,7 @@ class PhonemeVisualizer:
         # 如果没有加载成功，使用默认字体
         if not self.font_large:
             try:
+                self.font = pygame.font.Font("墨趣古风体.ttf", 36)  # 初始化font属性
                 self.font_large = pygame.font.Font("墨趣古风体.ttf", 36)
                 self.font_medium = pygame.font.Font("墨趣古风体.ttf", 24)
                 self.font_small = pygame.font.Font("墨趣古风体.ttf", 18)
@@ -302,6 +305,7 @@ class PhonemeVisualizer:
                 chinese_fonts = ['PingFang SC', 'STHeiti', 'SimHei', 'Microsoft YaHei']
                 for font_name in chinese_fonts:
                     try:
+                        self.font = pygame.font.SysFont(font_name, 36)  # 初始化font属性
                         self.font_large = pygame.font.SysFont(font_name, 36)
                         self.font_medium = pygame.font.SysFont(font_name, 24)
                         self.font_small = pygame.font.SysFont(font_name, 18)
@@ -311,15 +315,18 @@ class PhonemeVisualizer:
                         continue
                 
                 if not self.font_large:
+                    self.font = pygame.font.Font(None, 36)  # 初始化font属性
                     self.font_large = pygame.font.Font(None, 36)
                     self.font_medium = pygame.font.Font(None, 24)
                     self.font_small = pygame.font.Font(None, 18)
                     print("音素可视化使用默认字体")
                 try:
+                    self.font = pygame.font.Font("墨趣古风体.ttf", 36)  # 初始化font属性
                     self.font_large = pygame.font.Font("墨趣古风体.ttf", 36)
                     self.font_medium = pygame.font.Font("墨趣古风体.ttf", 24)
                     self.font_small = pygame.font.Font("墨趣古风体.ttf", 18)
                 except:
+                    self.font = pygame.font.Font(None, 36)  # 初始化font属性
                     self.font_large = pygame.font.Font(None, 36)
                     self.font_medium = pygame.font.Font(None, 24)
                     self.font_small = pygame.font.Font(None, 18)

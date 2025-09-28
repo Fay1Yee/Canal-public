@@ -416,12 +416,14 @@ class CanalInkWashApp:
                                     self.web_server.update_content(self.generated_art)
                                 self._transition_to(AppState.E5_DISPLAY)
                             else:
-                                print("最终艺术作品生成失败，返回选择状态")
+                                print("最终艺术作品生成失败，进入重置状态")
+                                self._transition_to(AppState.E6_RESET)
                         except Exception as e:
                             print(f"异步艺术生成异常: {e}")
                             import traceback
                             traceback.print_exc()
                             self.ui_renderer.stop_loading_animation()
+                            self._transition_to(AppState.E6_RESET)
                     
                     # 在单独线程中生成艺术作品
                     threading.Thread(target=generate_art_async, daemon=True).start()
@@ -431,6 +433,7 @@ class CanalInkWashApp:
                     import traceback
                     traceback.print_exc()
                     self.ui_renderer.stop_loading_animation()
+                    self._transition_to(AppState.E6_RESET)
                     
             elif state_duration >= self.config['states']['E4_seconds']:
                 # 超时自动确认当前选择
@@ -552,6 +555,9 @@ class CanalInkWashApp:
                     # 渲染拟声词可视化（如果可用）
                     if self.onomatopoeia_visualizer and audio_data is not None:
                         try:
+                            # 计算音频强度并更新拟声词可视化器
+                            audio_intensity = self.audio_recorder.get_audio_intensity() if hasattr(self.audio_recorder, 'get_audio_intensity') else 0.5
+                            self.onomatopoeia_visualizer.update_audio_intensity(audio_intensity)
                             self.onomatopoeia_visualizer.update(audio_data)
                             self.onomatopoeia_visualizer.render(self.screen)
                         except Exception as e:
@@ -584,6 +590,16 @@ class CanalInkWashApp:
                         # 计算剩余时间
                         remaining_time = max(0, self.config['states']['E5_seconds'] - 
                                            (time.time() - self.state_start_time))
+                        
+                        # 更新本地书法生成器的音频数据
+                        audio_data = self.audio_recorder.get_realtime_data()
+                        if audio_data is not None:
+                            self.ui_renderer.update_local_calligraphy_audio(audio_data)
+                        
+                        # 更新本地书法生成器的动画
+                        dt = self.clock.get_time() / 1000.0  # 转换为秒
+                        self.ui_renderer.update_local_calligraphy_animation(dt)
+                        
                         self.ui_renderer.render_display_screen(self.generated_art, remaining_time)
                     except Exception as e:
                         print(f"渲染展示界面异常: {e}")

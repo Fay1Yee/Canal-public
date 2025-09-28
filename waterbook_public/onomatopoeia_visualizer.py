@@ -434,7 +434,7 @@ class OnomatopoeiaVisualizer:
                            if current_time - stroke.created_time < 4.0]
 
     def render(self, surface: pygame.Surface):
-        """渲染拟声词可视化（性能优化版本）"""
+        """渲染拟声词可视化（增强声波跟随效果）"""
         try:
             # 渲染当前拟声词
             if self.current_onomatopoeia and self.text_alpha > 0:
@@ -445,7 +445,7 @@ class OnomatopoeiaVisualizer:
                 if self.text_alpha < 255:
                     text_surface.set_alpha(self.text_alpha)
                 
-                # 计算位置（居中显示）
+                # 计算位置 - 增强声波跟随效果
                 text_rect = text_surface.get_rect()
                 if self.text_scale != 1.0:
                     # 缩放文字
@@ -454,10 +454,34 @@ class OnomatopoeiaVisualizer:
                     text_surface = pygame.transform.scale(text_surface, (scaled_width, scaled_height))
                     text_rect = text_surface.get_rect()
                 
-                text_rect.center = (self.width // 2, self.height // 2)
+                # 声波跟随效果 - 基于音频强度的动态位置
+                base_x = self.width // 2
+                base_y = self.height // 2
+                
+                # 获取当前音频强度（如果有的话）
+                audio_intensity = getattr(self, 'current_audio_intensity', 0.0)
+                
+                # 声波形状的动态浮动
+                current_time = time.time()
+                wave_offset_x = math.sin(current_time * 2.0 + audio_intensity * 10) * (20 + audio_intensity * 30)
+                wave_offset_y = math.cos(current_time * 1.5 + audio_intensity * 8) * (15 + audio_intensity * 25)
+                
+                # 添加基于频率的振动效果
+                freq_vibration_x = math.sin(current_time * 8.0) * audio_intensity * 8
+                freq_vibration_y = math.cos(current_time * 6.0) * audio_intensity * 6
+                
+                # 最终位置计算
+                final_x = int(base_x + wave_offset_x + freq_vibration_x)
+                final_y = int(base_y + wave_offset_y + freq_vibration_y)
+                
+                text_rect.center = (final_x, final_y)
                 
                 # 绘制文字
                 surface.blit(text_surface, text_rect)
+                
+                # 添加声波可视化效果
+                if audio_intensity > 0.1:
+                    self._render_sound_wave_effects(surface, final_x, final_y, audio_intensity)
             
             # 简化的装饰效果
             if self.current_onomatopoeia and len(self.ink_strokes) < self.max_strokes:
@@ -474,6 +498,40 @@ class OnomatopoeiaVisualizer:
         
         except Exception as e:
             print(f"拟声词渲染错误: {e}")
+    
+    def _render_sound_wave_effects(self, surface: pygame.Surface, center_x: int, center_y: int, intensity: float):
+        """渲染声波效果"""
+        try:
+            current_time = time.time()
+            
+            # 绘制同心圆声波
+            for i in range(3):
+                radius = int(30 + i * 20 + intensity * 40)
+                wave_phase = current_time * 3.0 + i * 0.5
+                alpha = int(100 * (1 - i * 0.3) * intensity)
+                
+                if alpha > 10:
+                    # 创建带透明度的表面
+                    wave_surface = pygame.Surface((radius * 2 + 10, radius * 2 + 10), pygame.SRCALPHA)
+                    wave_color = (100, 150, 200, alpha)
+                    
+                    # 绘制波动的圆形
+                    for angle in range(0, 360, 10):
+                        rad = math.radians(angle)
+                        wave_radius = radius + math.sin(wave_phase + angle * 0.1) * 5
+                        x = int(radius + 5 + math.cos(rad) * wave_radius)
+                        y = int(radius + 5 + math.sin(rad) * wave_radius)
+                        pygame.draw.circle(wave_surface, wave_color[:3], (x, y), 2)
+                    
+                    wave_surface.set_alpha(alpha)
+                    surface.blit(wave_surface, (center_x - radius - 5, center_y - radius - 5))
+                    
+        except Exception as e:
+            print(f"声波效果渲染错误: {e}")
+    
+    def update_audio_intensity(self, intensity: float):
+        """更新音频强度，用于声波跟随效果"""
+        self.current_audio_intensity = intensity
     
     def _render_paper_texture(self, screen: pygame.Surface):
         """渲染宣纸纹理背景"""

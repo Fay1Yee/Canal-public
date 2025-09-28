@@ -355,6 +355,7 @@ class RealtimeAudioVisualizer:
         self.spectrum_data = None
         self.spectrum_history = []
         self.max_history = 50
+        self.waveform_history = deque(maxlen=5000)  # 添加缺失的波形历史记录
         
         # 可视化参数
         self.bar_count = 64

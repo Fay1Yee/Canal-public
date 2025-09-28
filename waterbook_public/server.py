@@ -207,7 +207,81 @@ class CanalWebHandler(BaseHTTPRequestHandler):
         except Exception as e:
             print(f"静态文件服务错误: {e}")
             self._send_error_response(500, "File serve failed")
-    
+
+    def _serve_video_file(self, path: str):
+        """提供视频文件"""
+        # 移除开头的斜杠
+        if path.startswith('/'):
+            path = path[1:]
+        
+        # 安全检查
+        if '..' in path:
+            self._send_error_response(400, "Invalid path")
+            return
+        
+        file_path = Path('www') / path
+        
+        if not file_path.exists():
+            self._send_error_response(404, "Video file not found")
+            return
+        
+        try:
+            # 确定MIME类型
+            mime_type, _ = mimetypes.guess_type(str(file_path))
+            if mime_type is None:
+                mime_type = 'video/mp4'
+            
+            # 读取文件
+            with open(file_path, 'rb') as f:
+                content = f.read()
+            
+            # 发送响应
+            self.send_response(200)
+            self.send_header('Content-Type', mime_type)
+            self.send_header('Content-Length', str(len(content)))
+            self.send_header('Accept-Ranges', 'bytes')
+            self.end_headers()
+            
+            self.wfile.write(content)
+            
+        except Exception as e:
+            print(f"视频文件服务错误: {e}")
+            self._send_error_response(500, "Video serve failed")
+
+    def _serve_json_file(self, path: str):
+        """提供JSON文件"""
+        # 移除开头的斜杠
+        if path.startswith('/'):
+            path = path[1:]
+        
+        # 安全检查
+        if '..' in path:
+            self._send_error_response(400, "Invalid path")
+            return
+        
+        file_path = Path('www') / path
+        
+        if not file_path.exists():
+            self._send_error_response(404, "JSON file not found")
+            return
+        
+        try:
+            # 读取JSON文件
+            with open(file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            # 发送响应
+            self.send_response(200)
+            self.send_header('Content-Type', 'application/json; charset=utf-8')
+            self.send_header('Content-Length', str(len(content.encode('utf-8'))))
+            self.end_headers()
+            
+            self.wfile.write(content.encode('utf-8'))
+            
+        except Exception as e:
+            print(f"JSON文件服务错误: {e}")
+            self._send_error_response(500, "JSON serve failed")
+
     def _send_json_response(self, data: Dict[str, Any], status_code: int = 200):
         """发送JSON响应"""
         json_content = json.dumps(data, ensure_ascii=False, indent=2)
@@ -824,20 +898,45 @@ class WebServer:
         self.current_art = generated_art
         
         try:
+            import shutil
+            
             # 保存元数据到JSON文件
             meta_path = self.www_dir / 'meta.json'
             with open(meta_path, 'w', encoding='utf-8') as f:
                 json.dump(generated_art.metadata, f, ensure_ascii=False, indent=2)
             
+            # 复制封面图像文件
+            if generated_art.cover_image_path and Path(generated_art.cover_image_path).exists():
+                cover_dest = self.www_dir / 'cover.png'
+                shutil.copy2(generated_art.cover_image_path, cover_dest)
+                print(f"封面图像已复制: {generated_art.cover_image_path} -> {cover_dest}")
+            else:
+                print(f"警告: 封面图像文件不存在: {generated_art.cover_image_path}")
+            
+            # 复制动画视频文件
+            if generated_art.animation_video_path and Path(generated_art.animation_video_path).exists():
+                # 检查文件扩展名，如果是PNG则复制为loop.png，否则为loop.mp4
+                source_path = Path(generated_art.animation_video_path)
+                if source_path.suffix.lower() == '.png':
+                    video_dest = self.www_dir / 'loop.png'
+                else:
+                    video_dest = self.www_dir / 'loop.mp4'
+                shutil.copy2(generated_art.animation_video_path, video_dest)
+                print(f"动画文件已复制: {generated_art.animation_video_path} -> {video_dest}")
+            else:
+                print(f"警告: 动画文件不存在: {generated_art.animation_video_path}")
+            
             # 如果有音频文件，复制到www目录
             if generated_art.audio_file_path and Path(generated_art.audio_file_path).exists():
-                import shutil
                 shutil.copy2(generated_art.audio_file_path, self.www_dir / 'raw.wav')
+                print(f"音频文件已复制: {generated_art.audio_file_path}")
             
             print("Web内容更新完成")
             
         except Exception as e:
             print(f"Web内容更新失败: {e}")
+            import traceback
+            traceback.print_exc()
     
     def get_server_url(self) -> str:
         """获取服务器URL"""
